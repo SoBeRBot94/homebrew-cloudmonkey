@@ -1,7 +1,6 @@
 class Cloudmonkey < Formula
   desc "CLI for Apache CloudStack"
   homepage "https://github.com/apache/cloudstack-cloudmonkey"
-  version "6.5.0"
   license "Apache-2.0"
 
   on_macos do
@@ -27,13 +26,13 @@ class Cloudmonkey < Formula
   end
 
   def install
-    if OS.mac?
-      cpu = Hardware::CPU.arm? ? "darwin.arm64" : "darwin.x86-64"
-    elsif Hardware::CPU.arm?
-      cpu = "linux.arm64"
-    else
-      cpu = "linux.x86-64"
-    end
+    cpu = if OS.mac?
+            Hardware::CPU.arm? ? "darwin.arm64" : "darwin.x86-64"
+          elsif Hardware::CPU.arm?
+            "linux.arm64"
+          else
+            "linux.x86-64"
+          end
     bin.install "cmk.#{cpu}" => "cmk"
   end
 
