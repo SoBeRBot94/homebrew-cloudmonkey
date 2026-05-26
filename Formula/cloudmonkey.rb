@@ -50,6 +50,6 @@ class Cloudmonkey < Formula
   end
 
   test do
-    assert_match "CloudMonkey", shell_output("#{bin}/cmk -v")
+    assert_match version.to_s, shell_output("#{bin}/cmk -v")
   end
 end
